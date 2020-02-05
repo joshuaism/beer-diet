@@ -10,7 +10,7 @@ import { Beer } from '../Beer';
 })
 export class EditBeerComponent implements OnInit {
   beerForm: FormGroup;
-  beer: Beer;
+  selectedBeer: Beer;
   beers: Beer[] = [];
   beerExistsError: boolean;
 
@@ -19,10 +19,14 @@ export class EditBeerComponent implements OnInit {
       'name': ['', Validators.required],
       'calories': ['', Validators.required],
       'abv': ['', Validators.required],
-      'servingSize': ['', Validators.required]
+      'servingSize': ['', Validators.required],
+      'carbs': [],
+      'sugar': [],
+      'protein': [],
+      'sodium': [],
+      'ingredients': []
     });
 
-    this.beer = new Beer();
   }
 
   ngOnInit() {
@@ -36,8 +40,9 @@ export class EditBeerComponent implements OnInit {
 
   onSubmit(value) {
     console.log(value);
-    if (this.beers.find(beer => beer.name.toLowerCase().match(value.name.toLowerCase()))) {
-      console.log(this.beers.find(beer => beer.name.toLowerCase().match(value.name.toLowerCase())));
+    let foundBeer = this.beers.find(beer => beer.name.toLowerCase() == value.name.trim().toLowerCase());
+    if (foundBeer) {
+      console.log(foundBeer);
       this.beerExistsError = true;
     } else {
       this.beerExistsError = false;
