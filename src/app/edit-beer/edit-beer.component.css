@@ -1,0 +1,24 @@
+label {
+    padding-inline-end: .5em;
+    min-width: 250px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+}
+
+form div {
+    text-align: left;
+}
+
+form input {
+    width: 250px;
+}
+
+form textarea {
+    width: 260px;
+    max-width: 260px;
+}
+
+.error {
+    color: red;
+}

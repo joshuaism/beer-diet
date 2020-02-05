@@ -1,0 +1,34 @@
+<div style="max-width:600px; padding: 5px; text-align:center">
+    <h1>
+        Beer Diet
+    </h1>
+
+<label class="label" for="calories">Calories</label>
+<br />
+<input class="field" type="number" min="0" step="50" #cal [(ngModel)]="calories" (ngModelChange)="onKey(cal.value)">
+<br />
+<br />
+<label class="label" for="beer">Beer</label>
+<br />
+<app-beer-dropdown (notify)="setBeer($event)"></app-beer-dropdown>
+<br />
+<div *ngIf="!selectedBeer&& calories > 0">
+    Select a beer from the dropdown.
+</div>
+<div *ngIf="selectedBeer && calories >= 0" style="padding:20px">
+    <div style="text-align:left">
+        <img *ngFor="let i of arrayMaker(numberOfBeers)" src="assets/images/bottle-empty.png">
+        <img *ngIf="fractionalBeer > 20 && fractionalBeer < 45" src="assets/images/bottle-three-quarters.png">
+        <img *ngIf="fractionalBeer > 45 && fractionalBeer < 70" src="assets/images/bottle-half.png">
+        <img *ngIf="fractionalBeer > 70 && fractionalBeer < 100" src="assets/images/bottle-quarter.png">
+    </div>
+    <br />
+    You can have {{numberOfBeers | number}} {{selectedBeer.servingSize | number}} oz. servings of {{selectedBeer.name}}
+    based on a {{calories}} calorie diet.
+    <br />
+    <br />
+    Consuming {{numberOfBeers | number}} {{selectedBeer.servingSize | number}} oz. servings of {{selectedBeer.name}} will
+    provide {{carbCalculation(selectedBeer)}} of carbohydrates and {{proteinCalculation(selectedBeer)}} of protein.
+</div>
+<div>{{error}}</div>
+</div>

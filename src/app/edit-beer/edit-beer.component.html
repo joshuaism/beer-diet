@@ -1,0 +1,44 @@
+<h1 *ngIf="selectedBeer">Edit Beer</h1>
+<h1 *ngIf="!selectedBeer">New Beer</h1>
+<form [formGroup]="beerForm" (ngSubmit)="onSubmit(beerForm.value)" [class.error]="!beerForm.valid && beerForm.touched">
+    <div>
+        <label for="name">Name*</label>
+        <input type="text" formControlName="name">
+    </div>
+    <div>
+        <label for="abv">ABV*</label>
+        <input type="number" formControlName="abv">
+    </div>
+    <div>
+        <label for="servingSize">Serving Size (oz.)*</label>
+        <input type="number" formControlName="servingSize">
+    </div>
+    <div>
+        <label for="calories">Calories*</label>
+        <input type="number" formControlName="calories">
+    </div>
+    <div>
+        <label for="carbs">Carbohydrates (g)</label>
+        <input type="number" id="beerCarbs">
+    </div>
+    <div>
+        <label for="sugar">Sugar (g)</label>
+        <input type="number" id="beerSugar">
+    </div>
+    <div>
+        <label for="protein">Protein (g)</label>
+        <input type="number" id="beerProtein">
+    </div>
+    <div>
+        <label for="sodium">Sodium (mg)</label>
+        <input type="number" id="beerSodium">
+    </div>
+    <div>
+        <label for="ingredients">Ingredients</label>
+        <textarea id="beerIngredients"></textarea>
+    </div>
+    <div>
+        <label></label><button type="submit">Submit</button>
+    </div>
+</form>
+<div *ngIf="beerExistsError">Beer already exists in the list.</div>
